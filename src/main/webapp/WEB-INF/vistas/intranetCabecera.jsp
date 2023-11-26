@@ -19,42 +19,42 @@
     	<c:if test="${ !empty sessionScope.objMenusTipo1}">
 	    	<li class="dropdown">
 		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		           Registros (PC1)<b class="caret"></b>
+		           Gestión de Libros<b class="caret"></b>
 		        </a>
 		        <ul class="dropdown-menu">
 		        	<c:forEach var="x" items="${sessionScope.objMenusTipo1}">
 						<li>
-		        			<a href="${x.ruta}"> ${x.nombre} </a>
+		        			<a href="${x.ruta}"> ${x.descripcion} </a>
 		        		</li>
 		        	</c:forEach>
 		        </ul>
 	     	</li>
      	</c:if>
      	
-     	<c:if test="${ !empty sessionScope.objMenusTipo3}">
+     	<c:if test="${ !empty sessionScope.objMenusTipo2}">
 	    	<li class="dropdown">
 		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		           CRUD (PC2)<b class="caret"></b>
-		        </a>
-		        <ul class="dropdown-menu">
-		        	<c:forEach var="x" items="${sessionScope.objMenusTipo3}">
-						<li>
-		        			<a href="${x.ruta}"> ${x.nombre} </a>
-		        		</li>
-		        	</c:forEach>
-		        </ul>
-	     	</li>
-     	</c:if>
-     	
-      	<c:if test="${ !empty sessionScope.objMenusTipo2}">
-	    	<li class="dropdown">
-		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		           Consulta y Reporte (PC3)<b class="caret"></b>
+		           Gestión de Préstamos<b class="caret"></b>
 		        </a>
 		        <ul class="dropdown-menu">
 		        	<c:forEach var="x" items="${sessionScope.objMenusTipo2}">
 						<li>
-		        			<a href="${x.ruta}"> ${x.nombre} </a>
+		        			<a href="${x.ruta}"> ${x.descripcion} </a>
+		        		</li>
+		        	</c:forEach>
+		        </ul>
+	     	</li>
+     	</c:if>
+     	
+      	<c:if test="${ !empty sessionScope.objMenusTipo3}">
+	    	<li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		           Gestión de Usuarios<b class="caret"></b>
+		        </a>
+		        <ul class="dropdown-menu">
+		        	<c:forEach var="x" items="${sessionScope.objMenusTipo3}">
+						<li>
+		        			<a href="${x.ruta}"> ${x.descripcion} </a>
 		        		</li>
 		        	</c:forEach>
 		        </ul>
@@ -64,12 +64,12 @@
      	<c:if test="${ !empty sessionScope.objMenusTipo4}">
 	    	<li class="dropdown">
 		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		          Transacciones (AP)<b class="caret"></b>
+		          Autor<b class="caret"></b>
 		        </a>
 		        <ul class="dropdown-menu">
 		        	<c:forEach var="x" items="${sessionScope.objMenusTipo4}">
 						<li>
-		        			<a href="${x.ruta}"> ${x.nombre} </a>
+		        			<a href="${x.ruta}"> ${x.descripcion} </a>
 		        		</li>
 		        	</c:forEach>
 		        </ul>

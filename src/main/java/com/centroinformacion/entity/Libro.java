@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "libro")
+@Table(name = "tb_libro")
 public class Libro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,9 @@ public class Libro {
 	private String titulo;
 	private int anio;
 	private String serie;
+	private String autor;
+	private int tipo;
+	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
@@ -37,34 +40,45 @@ public class Libro {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date fechaActualizacion;
+	private Date fechaActualiza;
 	
 	private int estado;
 	
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idCategoriaLibro")
-	private DataCatalogo categoriaLibro;
+	private String imagen;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idTipoLibro")
-	private DataCatalogo tipoLibro;
+	@JoinColumn(name = "idCategoria")
+	private Categoria categoria;
+	
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idEstadoPrestamo")
-	private DataCatalogo estadoPrestamo;
+	@JoinColumn(name = "idEstado")
+	private Estado estadoV;	
 		
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUsuarioRegistro")
+	@JoinColumn(name = "idUsuReg")
 	private Usuario usuarioRegistro;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUsuarioActualiza")
+	@JoinColumn(name = "idUsuAct")
 	private Usuario usuarioActualiza;
+	
+	public String getReporteCategoria() {
+		return categoria.getDescripcion();
+	};
+	
+	public String getReporteEstado() {
+		return estado == 1? "Activo": "Inactivo";
+	};
+	
+	public String tipoDesc() {
+		
+		return tipo == 0 ? "Físico" : "Digital";
+	}
 }
 
 

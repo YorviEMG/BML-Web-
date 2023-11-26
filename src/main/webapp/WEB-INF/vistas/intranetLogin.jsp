@@ -32,25 +32,39 @@
 				        <strong><%= request.getAttribute("mensaje")  %></strong>
 				    </div>
 				<% } %>
+				<%  if (request.getAttribute("test") != null) { %>
+                	<div class="alert alert-success fade in" id="success-alert2">
+				        <a href="#" class="close" data-dismiss="alert">&times;</a>
+				        <strong><%= request.getAttribute("test")  %></strong>
+				    </div>
+				<% } %>
+				<%  if (request.getParameter("msg") != null) { %>
+                	<div class="alert alert-success fade in" id="success-alert2">
+				        <a href="#" class="close" data-dismiss="alert">&times;</a>
+				        <strong><%= request.getParameter("msg")  %></strong>
+				    </div>
+				<% } %>
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>Ingreso al Sistema de Intranet</h3>
-                            		<p>Ingrese su Usuario y Contraseña:</p>
+                        			<img alt="" src="https://themes.odilo.io/Bib-Municipal-Lima_E0907/images/logo.png">
                         		</div>
                             </div>
                             <div class="form-bottom">
 			                    <form id="id_form"  action="login" method="post" class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="form-username">Usuario</label>
-			                        	<input type="text" name="login" placeholder="Ingrese Usuario" class="form-username form-control" id="form-username" maxlength="20" value="luis">
+			                        	<input type="text" name="login" placeholder="Ingrese Usuario" class="form-username form-control" id="form-username" maxlength="20" value="admin">
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Contraseña</label>
-			                        	<input type="password" name="password" placeholder="Ingrese Contraseña" class="form-password form-control" id="form-password" maxlength="20" value="luis">
+			                        	<input type="password" name="password" placeholder="Ingrese Contraseña" class="form-password form-control" id="form-password" maxlength="20" value="admin">
 			                        </div>
-			                        <button type="submit" class="btn btn-primary">Ingresar</button>
+			                        <div class="form-group">
+				                        <button type="submit" class="btn btn-primary">Ingresar</button>
+				                        <a style="width: 100%; margin-top: 10px; height: 50px; padding: 15px 0" type="button" class="btn btn-warning" href="/registrarse">Registrarse</a>
+			                        </div>
 			                    </form>
 		                    </div>
                         </div>   
@@ -67,6 +81,7 @@
 $("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
     $("#success-alert").slideUp(500);
 });
+
 </script>
 
 

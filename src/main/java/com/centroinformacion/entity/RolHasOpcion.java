@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "rol_has_opcion")
+@Table(name = "tb_rol_has_opcion")
 public class RolHasOpcion {
 
 	

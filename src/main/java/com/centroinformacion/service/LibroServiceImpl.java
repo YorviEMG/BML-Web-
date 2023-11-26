@@ -41,4 +41,10 @@ public class LibroServiceImpl implements LibroService {
 		return repository.findById(id);
 	}
 
+	@Override
+	public List<Libro> filtrarLibro(String filtro, int categoria, int tipo, int anio) {
+		
+		return repository.filtrarLibro(filtro, categoria, tipo, anio);
+	}
+
 }

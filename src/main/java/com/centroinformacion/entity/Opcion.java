@@ -12,15 +12,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "opcion")
+@Table(name = "tb_opcion")
 public class Opcion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOpcion;
-	private String nombre;
-	private String ruta;
+	private String descripcion;
 	private int estado;
+	private String ruta;
 	private int tipo;
 
 }

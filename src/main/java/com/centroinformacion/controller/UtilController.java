@@ -7,84 +7,55 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.centroinformacion.entity.Alumno;
-import com.centroinformacion.entity.DataCatalogo;
-import com.centroinformacion.entity.Pais;
-import com.centroinformacion.service.AlumnoService;
-import com.centroinformacion.service.DataCatalogoService;
-import com.centroinformacion.service.PaisService;
+import com.centroinformacion.entity.Categoria;
+import com.centroinformacion.entity.Devolucion;
+import com.centroinformacion.entity.Prestamo;
+import com.centroinformacion.entity.Rol;
+import com.centroinformacion.entity.Usuario;
+import com.centroinformacion.service.CategoriaService;
+import com.centroinformacion.service.DevolucionService;
+import com.centroinformacion.service.PrestamoService;
+import com.centroinformacion.service.RolService;
 import com.centroinformacion.util.AppSettings;
+
+import jakarta.servlet.http.HttpSession;
 @Controller
 public class UtilController {
 
-	@Autowired
-	private PaisService paisService;
-
-	@Autowired
-	private DataCatalogoService dataCatalogoService;
+	private final CategoriaService serviceCategoria;
+	private final RolService serviceRol;
+	private final DevolucionService serviceDevolucion;
 	
-	@Autowired
-	private AlumnoService alumnoService;
-	
-
-	@GetMapping("/listaPais")
-	@ResponseBody
-	public List<Pais> listaPais() {
-		return paisService.listaTodos();
+	public UtilController(CategoriaService serviceCategoria, RolService serviceRol, DevolucionService serviceDevolucion) {
+		// TODO Auto-generated constructor stub
+		this.serviceCategoria = serviceCategoria;
+		this.serviceRol = serviceRol;
+		this.serviceDevolucion = serviceDevolucion;
 	}
 	
-	@GetMapping("/listaAlumno")
+	@GetMapping("/listaCategoria")
 	@ResponseBody
-	public List<Alumno> listaAlumno() {
-		return alumnoService.listaTodos();
-	}
-
-	@GetMapping("/listaCategoriaDeLibro")
-	@ResponseBody
-	public List<DataCatalogo> listaCategoriaDeLibro() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_01_CATEGORIA_DE_LIBRO);
+	public List<Categoria> listarCategoria(){
+		return serviceCategoria.listarTodo();
 	}
 	
-	@GetMapping("/listaTipoProveedor")
+	@GetMapping("/listaPrestamo")
 	@ResponseBody
-	public List<DataCatalogo> listaTipoProveedor() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_02_TIPO_DE_PROVEEDOR);
+	public List<Devolucion> listarPrestamo(HttpSession session){
+		Usuario usuario = (Usuario)session.getAttribute("objUsuario");
+		
+		if(usuario.getRol().getIdRol()==AppSettings.ROL_CLIENTE)
+		return serviceDevolucion.filtrarDevolucion(usuario.getIdUsuario());
+		else {
+			return serviceDevolucion.filtrarDevolucionTodo();
+		}
+		
 	}
 	
-	@GetMapping("/listaModalidadAlumno")
+	@GetMapping("/listaRol")
 	@ResponseBody
-	public List<DataCatalogo> listaModalidadAlumno() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_03_MODALIDAD_DE_ALUMNO);
+	public List<Rol> listarRol(){
+		return serviceRol.listarTodo();
 	}
-	
-	@GetMapping("/listaGradoAutor")
-	@ResponseBody
-	public List<DataCatalogo> listaGradoAutor() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_04_GRADO_DE_AUTOR);
-	}	
-	
-	@GetMapping("/listaTipoLibroRevista")
-	@ResponseBody
-	public List<DataCatalogo> listaTipoLibroRevista() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_05_TIPO_DE_LIBRO_Y_REVISTA);
-	}	
-	
-	@GetMapping("/listaTipoSala")
-	@ResponseBody
-	public List<DataCatalogo> listaTipoSala() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_06_TIPO_DE_SALA);
-	}	
-	
-	@GetMapping("/listaSede")
-	@ResponseBody
-	public List<DataCatalogo> listaSede() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_07_SEDE);
-	}	
-	
-	@GetMapping("/listaEstadoLibro")
-	@ResponseBody
-	public List<DataCatalogo> listaEstadoLibro() {
-		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_08_ESTADO_DE_LIBRO);
-	}	
 	
 }

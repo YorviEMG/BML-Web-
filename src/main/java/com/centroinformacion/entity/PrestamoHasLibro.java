@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "prestamo_tiene_libro")
+@Table(name = "tb_prestamo_has_libro")
 public class PrestamoHasLibro {
 
 	

@@ -12,13 +12,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "rol")
+@Table(name = "tb_rol")
 public class Rol {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRol;
-	private String nombre;
+	private String descripcion;
 	private int estado;
 
 }

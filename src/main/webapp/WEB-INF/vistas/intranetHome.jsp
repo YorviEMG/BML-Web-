@@ -33,14 +33,7 @@
 <br><br>
 <h4>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</h4><br>                
 <h4>DNI: ${sessionScope.objUsuario.dni}</h4><br>
-<h4>Roles:</h4>
-	<ul>
-        <c:forEach var="x" items="${sessionScope.objRoles}">
-            <li>
-                   ${x.nombre} 
-            </li>
-        </c:forEach>
-    </ul><br>
+<h4>Rol: ${sessionScope.objUsuario.rol.descripcion }</h4>
 </div>
 
 <div class="container" >
